@@ -46,7 +46,10 @@ import {
   StyledHeroInfo,
   StyledAlert,
   StyledAlertLeft,
-  StyledAlertContent
+  StyledAlertContent,
+  StyledTOSWrapper,
+  StyledServiceText,
+  StyledServiceLink
 } from './style'
 
 export interface Props {
@@ -54,6 +57,8 @@ export interface Props {
   optInAction: () => void
   creating?: boolean
   onReTry?: () => void
+  onTOSClick?: () => void
+  onPrivacyClick?: () => void
 }
 
 class WelcomePage extends React.PureComponent<Props, {}> {
@@ -159,7 +164,9 @@ class WelcomePage extends React.PureComponent<Props, {}> {
     )
   }
 
-  get optInContent () {
+  optInContent = () => {
+    const { onPrivacyClick, onTOSClick } = this.props
+
     return (
       <StyledOptInInnerSection>
         <StyledActionTitle level={4}>
@@ -181,6 +188,15 @@ class WelcomePage extends React.PureComponent<Props, {}> {
               />
           }
         </StyledOptInSecond>
+        {
+          !this.isTouchScreen
+          ? <StyledTOSWrapper>
+              <StyledServiceText>
+                {getLocale('serviceTextWelcome')} <StyledServiceLink onClick={onTOSClick}>{getLocale('termsOfService')}</StyledServiceLink> {getLocale('and')} <StyledServiceLink onClick={onPrivacyClick}>{getLocale('privacyPolicy')}</StyledServiceLink>.
+                </StyledServiceText>
+            </StyledTOSWrapper>
+          : null
+        }
       </StyledOptInInnerSection>
     )
   }
@@ -242,7 +258,7 @@ class WelcomePage extends React.PureComponent<Props, {}> {
               />
             </StyledInfoContent>
             <StyledTakeActionContent>
-              {this.optInContent}
+              {this.optInContent()}
             </StyledTakeActionContent>
           </StyledCenterSection>
         </StyledBackground>

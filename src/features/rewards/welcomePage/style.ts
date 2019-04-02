@@ -5,6 +5,7 @@
 import styled from 'styled-components'
 import Heading from '../../../components/text/heading'
 import centerBackgroundUrl from './assets/centerTextBackground.svg'
+import palette from '../../../theme/colors'
 
 export const StyledOptInSection = styled<{}, 'section'>('section')`
   margin: 40px auto;
@@ -195,4 +196,25 @@ export const StyledAlertContent = styled<{}, 'div'>('div')`
 export const StyledAlertLeft = styled<{}, 'div'>('div')`
   flex-basis: 70%;
   flex-grow: 1;
+`
+
+export const StyledTOSWrapper = styled<{}, 'div'>('div')`
+  width: 325px;
+  display: block;
+  margin: 20px auto 0;
+`
+
+export const StyledServiceText = styled<{}, 'span'>('span')`
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 12px;
+  font-family: Muli, sans-serif;
+  font-weight: normal;
+  letter-spacing: 0;
+  line-height: 18px;
+`
+
+export const StyledServiceLink = styled<{}, 'a'>('a')`
+  cursor: pointer;
+  color: ${palette.black};
+  font-weight: 600;
 `
